@@ -1,0 +1,353 @@
+---
+title: "__Analyse des performances sportives offensives en ligue 1 Uber Eats__"
+subtitle: _Nettoyage de la base de donnée_
+author: "KONE Hassan-Ahmed Sékou"
+
+abstract : "L'objectif de ce document est de fournir un exemple de nettoyage d'une base de données avec le logiel de programmation R afin de la rendre exploitable pour l'analyse. Pour ce faire, nous baserons notre démarche sur les performances sportives individuelles des joueurs de 'Ligue 1 Uber Eats' lors de la saison 2021/2022 à la 30ème journée. Ce guide a été entièrement rédigé en langage R markdown pour une production en format pdf. Les données et la définition des attributs sont disponibles en cliquant sur **<[fbref](https://fbref.com/fr/?lang=fr)>**. Egalement, le script '.R' et le fichier '.Rmd' sont disponibles en cliquant sur **<[Gitbub](https://github.com/konehassan92/performances_offensives_L1_nettoyage_bdd)>**. \\par\\textbf{Keywords:} ***classes des variables, données manquantes, variable continue, variable discrète, discrétisation, filtre***\\ "                               
+#thanks: 
+citation_package: natbib
+output:
+  bookdown::pdf_book:
+    keep_tex: yes
+    fig_caption: true
+    number_sections: yes
+    toc: yes
+    toc_depth: 5
+    highlight: tango
+  html_document: 
+    toc: yes
+keep_tex: yes
+fig_caption: yes
+fontfamily: libertine
+fontsize: 7pt
+documentclass : report
+geometry: 
+  - top=1cm
+  - bottom=1cm
+  - margin=1in
+header-includes:
+  - \usepackage{hyperref}
+  - \usepackage{array}   
+  - \usepackage{caption}
+  - \usepackage{graphicx}
+  - \usepackage{siunitx}
+  - \usepackage[table]{xcolor}
+  - \usepackage{multirow}
+  - \usepackage{hhline}
+  - \usepackage{calc}
+  - \usepackage{tabularx}
+  - \usepackage{fontawesome}
+  - \usepackage[para,online,flushleft]{threeparttable}
+  - \usepackage{titling}
+  - \pretitle{\begin{center}
+    \includegraphics[width=5in,height=5in]{/Users/hassan-ahmedsekoukone/Desktop/analyse perfermance joueur ligue 1/Rapport /R/RMD/R_ligue1.png}\LARGE\\}
+  - \posttitle{\end{center}}
+---
+
+
+```{r setup, include=FALSE, warning=F,message=F}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Organisation du travail
+## Création du répertoire de travail
+
+```{r message=FALSE, warning=FALSE}
+setwd("~/Desktop/analyse perfermance joueur ligue 1")
+getwd()
+```
+
+
+## Liste des packages chargés
+
+```{r ,message=F}
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(tsoutliers)
+library(readxl)
+library(tidyverse)
+library(stringr)
+library(patchwork)
+library(lattice)
+library(DataExplorer) 
+library(VIM)
+library(summarytools)
+library("funModeling")
+library(GGally)
+library(ISLR)
+library(leaps)
+library(knitr)
+library(kableExtra)
+```
+
+# Manipulation des bases de données
+## Chargement des bases de données à fuisonner
+
+Dans un document '.Rmd', toujours inclure le chemin du répertoire dans le chunck pour importer ou exporter des éléments de RStudio. Pour un script '.R', pas besoin.
+
+```{r,message=FALSE}
+setwd("~/Desktop/analyse perfermance joueur ligue 1")
+
+tirs <- read_excel("perfomance_joueurs.xlsx", 
+                                 sheet = "tirs")
+
+prepa_tirs_buts <- read_excel("perfomance_joueurs.xlsx", 
+                   sheet = "preparation tirs et buts")
+
+temps_jeu<- read_excel("perfomance_joueurs.xlsx", 
+                              sheet = "temps de jeu")
+```
+
+
+```{r,results='markup'}
+kable(head(tirs[,1:8]),format = "latex")
+```
+-dimension de la base de données : (`r dim(tirs)`)
+
+```{r,results='markup'}
+kable(head(prepa_tirs_buts[,1:8]),format = "latex")
+```
+-dimension de la base de données : (`r dim(prepa_tirs_buts)`)
+
+```{r,results='markup'}
+kable(head(temps_jeu[,1:8]),format = "latex")
+```
+-dimension de la base de données : (`r dim(temps_jeu)`)
+
+
+## Fusion des bases de données   
+
+```{r,results='markup'}
+df= merge(temps_jeu,prepa_tirs_buts,by=c("Joueur","Équipe"),all.x = T)
+df= merge(df,tirs,by=c("Joueur","Équipe"),all.x = T)
+kable(head(df[,1:8]),format = "latex")
+```
+-dimension de la base de données : (`r dim(df)`)
+
+## Renomination des variables
+
+- Nom des variables
+
+```{r}
+names(df)
+```
+
+Nous devons renommer la majorité des variables pour une meilleure lecture.
+
+```{r}
+df= rename(df,age="Âge",
+           equipe="Équipe",
+           minutes_jouees_90="90",
+           Mn_MJ="Mn/MJ",
+           pourcentage_TC="TC%",
+           Tir_90="Tir/90",
+           TC_90="TC/90",
+           B_Tir="B/Tir",
+           Mn_Debute="Mn/Débuté",
+           buts_marques_net_avec_joueur="+/-",
+           buts_marques_net_avec_joueur_par_match="+/-90",
+           Sur_En_dehors_du_terrain="Sur/En dehors du terrain",
+           PassJeu_tirs="PassJeu...5",
+           PassArr_tirs="PassArr...6",
+           Drib_tirs="Drib...7",
+           tirs_tirs="Tirs...8",
+           Ftp_tirs="Ftp...9",
+           Mn_Remp="Mn/Remp",
+           pourcentage_min="Min%",
+           def_tirs="Déf...10",
+           passjeu_buts="PassJeu...13",
+           passarr_buts="PassArr...14",
+           Drib_buts="Drib...15",
+           tirs_buts ="Tirs...16",
+           Ftp_buts="Ftp...17",
+           Def_buts="Déf...18",
+           B_TC="B/TC",
+           PenM="PénM",
+           PenT="PénT")
+```
+
+- Pour obtenir le nom des variables en minuscule.
+
+```{r}
+colnames(df)= str_to_lower(colnames(df))
+colnames(df)
+```
+
+## Classe des variables
+
+- Variables dans un format inadéquat. En particulier la variable 'age'.
+
+```{r, }
+str(df)
+```
+
+### Modification de la variable age dans le bon format
+
+```{r}
+age=rename(data.frame(joueur = df$joueur
+                      ,equipe=df$equipe,
+                      str_split_fixed(df$age, "-", 2))
+           ,age_annee=X1,age_jours=X2)
+age = update_columns(age, c("age_annee","age_jours"),
+                     as.numeric)
+age = mutate(age,age=age_annee+(age_jours/365))
+age=select(age,joueur,equipe,age)
+kable(head(age,3),format = 'latex')
+```
+
+- 'df' sans l'ancienne variable 'age' située à la place 37.
+
+```{r}
+df=df[,-37]
+```
+
+- 'df' avec la nouvelle variable 'age' créée dans le bon format.
+
+```{r}
+df=merge(df,age,by=c('joueur','equipe'),all.x = T)
+str(df$age)
+```
+
+### Modification de la classe des autres variables
+
+```{r}
+df = update_columns(df, 
+                    c("mj","min","mn_mj",
+                      "pourcentage_min","titulaire",
+                      "tirs_tirs", "mn_debute","compl",
+                      "remp","mn_remp","rempne","ppm",
+                      "bt","be","buts_marques_net_avec_joueur",
+                      "buts_marques_net_avec_joueur_par_match",
+                      "sur_en_dehors_du_terrain","amt90",
+                      "passjeu_tirs","passarr_tirs",
+                      "drib_tirs","tirs","ftp_tirs","def_tirs",
+                      "amb","amb90","passjeu_buts","passarr_buts",
+                      "drib_buts","tirs_buts","ftp_buts",
+                      "def_buts","minutes_jouees_90",
+                      "buts","tc","pourcentage_tc",
+                      "tir_90","tc_90","b_tir","b_tc",
+                      "dist","cf","penm","pent","buts")
+                    , as.numeric)
+
+df = update_columns(df, c("joueur","equipe","nation","pos"
+                          ,"naissance")
+                    , as.factor)
+str(df)
+```
+
+## Relocalisation des variables
+
+- La variable 'joueur' est 1ère position pour identifier les joueurs.
+
+- les variables qualitatives signalitiques seront placées avant les variables continues.
+
+- La variable 'buts' sera en 2ème position car elle sera considérée plus tard comme variable endogène dans un modèle de maching learnig avec application économétrique.
+
+```{r}
+df= relocate(df,c("nation","pos","naissance"),.before = mj)
+df= relocate(df,buts,.before = equipe)
+colnames(df[,1:8])
+```
+
+
+
+# Analyse exploratoire de la bdd
+
+- Pour rappel, l'exploration de données dans un projet de données précède les statistiques descriptives et/ou les inférences statistiques. Cette étape est essentielle à la compréhension de la base de données en nous fournissant un premier aperçu de celle-ci.
+
+- La variable ***'buts'*** ayant une grande importance dans l'analyse des performances offensives, nous ne retenons que les joueurs ayant marqué au moins 1 but dans la saison.
+
+```{r}
+df=filter(df,buts>0)
+```
+
+Nous obtenons un total de `r nrow(df)` joueurs et buteurs.
+
+## Structure des données
+
+```{r}
+plot_intro(df)
+```
+
+
+## Données manquantes
+
+```{r,results='markup'}
+profile_missing(df)
+df_NA <- aggr(df,
+              col=c('navyblue','red'),
+              numbers=TRUE,
+              sortVars=TRUE,
+              labels=names(data),
+              cex.axis=.7, gap=3,
+              ylab=c("Histogramme des valeurs manquantes","Pattern"))
+df_NA
+```
+
+## distribution des variables
+### Variables qualitatives
+
+```{r}
+plot_bar(
+  select(df,naissance,pos,equipe),
+  title = "Répartition des joueurs par caractéristiques")
+```
+
+### Variables continues
+#### Normalité
+
+- ***Histogramme***
+
+```{r}
+plot_histogram(split_columns(df)$continuous)
+```
+
+- ***Densité***
+
+```{r}
+plot_density(split_columns(df)$continuous)
+```
+
+- ***qq-plot***
+
+```{r,message=F,warning=FALSE}
+plot_qq(split_columns(df)$continuous)
+```
+
+
+#### Evolution du nombre de buts en fonction des autres variables continues
+
+```{r,message=F,warning=FALSE}
+plot_scatterplot(split_columns(df)$continuous, by = "buts") 
+```
+
+Les variables '*def_tirs', 'ftp_tirs', 'passjeu_buts', 'tirs_tirs', 'def_buts,drib_buts', 'ftp_buts','passarr_buts', 'tirs_buts', 'penm'* et *'pent*' seront discrétisés.
+
+
+```{r}
+df_a_discritise = select(df,
+                         def_tirs,ftp_tirs,passjeu_buts,
+                         tirs_tirs,def_buts,drib_buts,
+                         ftp_buts,passarr_buts,tirs_buts,
+                         penm,pent)
+
+df_a_discritise = update_columns(
+  df_a_discritise,
+  c("def_tirs","ftp_tirs","passjeu_buts","tirs_tirs",
+    "def_buts","drib_buts","ftp_buts","passarr_buts",
+    "tirs_buts","penm","pent")
+                    , as.factor)
+colnames(df_a_discritise) <- paste("discr",
+                                   colnames(df_a_discritise),
+                                   sep="_")
+
+summary(df_a_discritise)
+
+df1=data.frame(df,df_a_discritise)
+```
+
+- Nous obtenons ainsi une nouvelle base de donnée finale 'df1' de dimension (`r dim(df1)`) avec les variables discrétisées en plus (contre 'df' de dimention (`r dim(df)`)). Cette base *'nettoyée'* servira ainsi à réaliser une analyse statistique par la suite. 
+
+- En outre, le raffinement de cette purification de la donnée est susceptible d'être complété au cours de la suite de l'analyse en fonction de l'évolution de la compréhension de l'étude tant d'un point de vue qualitatif que quantitatif.
