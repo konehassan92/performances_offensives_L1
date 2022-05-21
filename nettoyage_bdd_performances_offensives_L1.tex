@@ -1,0 +1,1043 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[7pt,]{report}
+\usepackage[]{libertine}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Analyse des performances sportives offensives en ligue 1 Uber Eats},
+            pdfauthor={KONE Hassan-Ahmed Sékou},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[top=1cm,bottom=1cm,margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\usepackage[para,online,flushleft]{threeparttable}
+\usepackage{titling}
+\pretitle{\begin{center} \includegraphics[width=5in,height=5in]{/Users/hassan-ahmedsekoukone/Desktop/analyse perfermance joueur ligue 1/Rapport /R/RMD/R_ligue1.png}\LARGE\\}
+\posttitle{\end{center}}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+\title{\textbf{Analyse des performances sportives offensives en ligue 1 Uber Eats}}
+\providecommand{\subtitle}[1]{}
+\subtitle{\emph{Nettoyage de la base de donnée}}
+\author{KONE Hassan-Ahmed Sékou}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+L'objectif de ce document est de fournir un exemple de nettoyage d'une base de données avec le logiel de programmation R afin de la rendre exploitable pour l'analyse. Pour ce faire, nous baserons notre démarche sur les performances sportives individuelles des joueurs de `Ligue 1 Uber Eats' lors de la saison 2021/2022 à la 30ème journée. Ce guide a été entièrement rédigé en langage R markdown pour une production en format pdf. Les données et la définition des attributs sont disponibles en cliquant sur \textbf{\textless{}\href{https://fbref.com/fr/?lang=fr}{fbref}\textgreater{}}. Egalement, le script `.R' et le fichier `.Rmd' sont disponibles en cliquant sur \textbf{\textless{}\href{https://github.com/konehassan92}{Gitbub}\textgreater{}}.
+
+\par
+
+\textbf{Keywords:} \textbf{\emph{classes des variables, données manquantes, variable continue, variable discrète, discrétisation, filtre}}~
+\end{abstract}
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\hypertarget{organisation-du-travail}{%
+\chapter{Organisation du travail}\label{organisation-du-travail}}
+
+\hypertarget{cruxe9ation-du-ruxe9pertoire-de-travail}{%
+\section{Création du répertoire de travail}\label{cruxe9ation-du-ruxe9pertoire-de-travail}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/Desktop/analyse perfermance joueur ligue 1"}\NormalTok{)}
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/hassan-ahmedsekoukone/Desktop/analyse perfermance joueur ligue 1"
+\end{verbatim}
+
+\hypertarget{liste-des-packages-charguxe9s}{%
+\section{Liste des packages chargés}\label{liste-des-packages-charguxe9s}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(tidyr)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{library}\NormalTok{(tsoutliers)}
+\KeywordTok{library}\NormalTok{(readxl)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(stringr)}
+\KeywordTok{library}\NormalTok{(patchwork)}
+\KeywordTok{library}\NormalTok{(lattice)}
+\KeywordTok{library}\NormalTok{(DataExplorer) }
+\KeywordTok{library}\NormalTok{(VIM)}
+\KeywordTok{library}\NormalTok{(summarytools)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"funModeling"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(GGally)}
+\KeywordTok{library}\NormalTok{(ISLR)}
+\KeywordTok{library}\NormalTok{(leaps)}
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{manipulation-des-bases-de-donnuxe9es}{%
+\chapter{Manipulation des bases de données}\label{manipulation-des-bases-de-donnuxe9es}}
+
+\hypertarget{chargement-des-bases-de-donnuxe9es-uxe0-fuisonner}{%
+\section{Chargement des bases de données à fuisonner}\label{chargement-des-bases-de-donnuxe9es-uxe0-fuisonner}}
+
+Dans un document `.Rmd', toujours inclure le chemin du répertoire dans le chunck pour importer ou exporter des éléments de RStudio. Pour un script `.R', pas besoin.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/Desktop/analyse perfermance joueur ligue 1"}\NormalTok{)}
+
+\NormalTok{tirs <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"perfomance_joueurs.xlsx"}\NormalTok{, }
+                                 \DataTypeTok{sheet =} \StringTok{"tirs"}\NormalTok{)}
+
+\NormalTok{prepa_tirs_buts <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"perfomance_joueurs.xlsx"}\NormalTok{, }
+                   \DataTypeTok{sheet =} \StringTok{"preparation tirs et buts"}\NormalTok{)}
+
+\NormalTok{temps_jeu<-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"perfomance_joueurs.xlsx"}\NormalTok{, }
+                              \DataTypeTok{sheet =} \StringTok{"temps de jeu"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(tirs[,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{]),}\DataTypeTok{format =} \StringTok{"latex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l|l|l|l|r|l|r}
+\hline
+Joueur & Nation & Pos & Équipe & Âge & Naissance & 90 & Buts\\
+\hline
+Yunis Abdelhamid & ma MAR & DF & Reims & 34-192 & 1987 & 26.1 & 1\\
+\hline
+Salis Abdul Samed & gh GHA & MT & Clermont Foot & 22-013 & 2000 & 23.6 & 1\\
+\hline
+Laurent Abergel & fr FRA & MT & Lorient & 29-066 & 1993 & 25.2 & 0\\
+\hline
+Charles Abi & fr FRA & AT & Saint-Étienne & 21-361 & 2000 & 0.5 & 0\\
+\hline
+Matthis Abline & fr FRA & AT & Rennes & 19-011 & 2003 & 1.1 & 0\\
+\hline
+Martin Adeline & fr FRA & MTAT & Reims & 18-127 & 2003 & 3.9 & 0\\
+\hline
+\end{tabular}
+
+-dimension de la base de données : (586, 19)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(prepa_tirs_buts[,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{]),}\DataTypeTok{format =} \StringTok{"latex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l|r|l|r|r|r|r}
+\hline
+Joueur & Équipe & AMT & AMT90 & PassJeu...5 & PassArr...6 & Drib...7 & Tirs...8\\
+\hline
+Yunis Abdelhamid & Reims & 15 & 0.57 & 10 & 0 & 2 & 1\\
+\hline
+Salis Abdul Samed & Clermont Foot & 34 & 1.44 & 24 & 0 & 0 & 4\\
+\hline
+Laurent Abergel & Lorient & 42 & 1.67 & 29 & 2 & 0 & 0\\
+\hline
+Charles Abi & Saint-Étienne & 0 & 0.00 & 0 & 0 & 0 & 0\\
+\hline
+Matthis Abline & Rennes & 1 & 0.87 & 1 & 0 & 0 & 0\\
+\hline
+Martin Adeline & Reims & 8 & 2.05 & 7 & 0 & 1 & 0\\
+\hline
+\end{tabular}
+
+-dimension de la base de données : (586, 18)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(temps_jeu[,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{]),}\DataTypeTok{format =} \StringTok{"latex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l|r|r|r|l|r|r}
+\hline
+Joueur & Équipe & MJ & Min & Mn/MJ & Min\% & Titulaire & Mn/Débuté\\
+\hline
+Yunis Abdelhamid & Reims & 27 & 2353 & 87 & 87.1 & 27 & 87\\
+\hline
+Salis Abdul Samed & Clermont Foot & 26 & 2128 & 82 & 78.8 & 25 & 84\\
+\hline
+Laurent Abergel & Lorient & 26 & 2269 & 87 & 84.0 & 26 & 87\\
+\hline
+Charles Abi & Saint-Étienne & 1 & 45 & 45 & 1.7 & 1 & 45\\
+\hline
+Matthis Abline & Rennes & 7 & 103 & 15 & 3.8 & 1 & 45\\
+\hline
+Mohamed Achi & Nantes & 0 & NA & NA & NA & 0 & NA\\
+\hline
+\end{tabular}
+
+-dimension de la base de données : (716, 18)
+
+\hypertarget{fusion-des-bases-de-donnuxe9es}{%
+\section{Fusion des bases de données}\label{fusion-des-bases-de-donnuxe9es}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=}\StringTok{ }\KeywordTok{merge}\NormalTok{(temps_jeu,prepa_tirs_buts,}\DataTypeTok{by=}\KeywordTok{c}\NormalTok{(}\StringTok{"Joueur"}\NormalTok{,}\StringTok{"Équipe"}\NormalTok{),}\DataTypeTok{all.x =}\NormalTok{ T)}
+\NormalTok{df=}\StringTok{ }\KeywordTok{merge}\NormalTok{(df,tirs,}\DataTypeTok{by=}\KeywordTok{c}\NormalTok{(}\StringTok{"Joueur"}\NormalTok{,}\StringTok{"Équipe"}\NormalTok{),}\DataTypeTok{all.x =}\NormalTok{ T)}
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(df[,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{]),}\DataTypeTok{format =} \StringTok{"latex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l|r|r|r|l|r|r}
+\hline
+Joueur & Équipe & MJ & Min & Mn/MJ & Min\% & Titulaire & Mn/Débuté\\
+\hline
+Abdel Jalil Medioub & Bordeaux & 9 & 537 & 60 & 19.9 & 5 & 88\\
+\hline
+Abdou Diallo & Paris S-G & 12 & 877 & 73 & 32.5 & 10 & 86\\
+\hline
+Abdoulaye Bakayoko & Saint-Étienne & 2 & 180 & 90 & 6.7 & 2 & 90\\
+\hline
+Abdoulaye Bamba & Angers & 2 & 4 & 2 & 0.1 & 0 & NA\\
+\hline
+Abdoulaye Sylla & Nantes & 1 & 67 & 67 & 2.5 & 1 & 67\\
+\hline
+Abdu Conté & Troyes & 10 & 823 & 82 & 30.5 & 10 & 82\\
+\hline
+\end{tabular}
+
+-dimension de la base de données : (716, 51)
+
+\hypertarget{renomination-des-variables}{%
+\section{Renomination des variables}\label{renomination-des-variables}}
+
+\begin{itemize}
+\tightlist
+\item
+  Nom des variables
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Joueur"                   "Équipe"                  
+##  [3] "MJ"                       "Min"                     
+##  [5] "Mn/MJ"                    "Min%"                    
+##  [7] "Titulaire"                "Mn/Débuté"               
+##  [9] "Compl"                    "Remp"                    
+## [11] "Mn/Remp"                  "RempNE"                  
+## [13] "PPM"                      "BT"                      
+## [15] "BE"                       "+/-"                     
+## [17] "+/-90"                    "Sur/En dehors du terrain"
+## [19] "AMT"                      "AMT90"                   
+## [21] "PassJeu...5"              "PassArr...6"             
+## [23] "Drib...7"                 "Tirs...8"                
+## [25] "Ftp...9"                  "Déf...10"                
+## [27] "AMB"                      "AMB90"                   
+## [29] "PassJeu...13"             "PassArr...14"            
+## [31] "Drib...15"                "Tirs...16"               
+## [33] "Ftp...17"                 "Déf...18"                
+## [35] "Nation"                   "Pos"                     
+## [37] "Âge"                      "Naissance"               
+## [39] "90"                       "Buts"                    
+## [41] "Tirs"                     "TC"                      
+## [43] "TC%"                      "Tir/90"                  
+## [45] "TC/90"                    "B/Tir"                   
+## [47] "B/TC"                     "Dist"                    
+## [49] "CF"                       "PénM"                    
+## [51] "PénT"
+\end{verbatim}
+
+Nous devons renommer la majorité des variables pour une meilleure lecture.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=}\StringTok{ }\KeywordTok{rename}\NormalTok{(df,}\DataTypeTok{age=}\StringTok{"Âge"}\NormalTok{,}
+           \DataTypeTok{equipe=}\StringTok{"Équipe"}\NormalTok{,}
+           \DataTypeTok{minutes_jouees_90=}\StringTok{"90"}\NormalTok{,}
+           \DataTypeTok{Mn_MJ=}\StringTok{"Mn/MJ"}\NormalTok{,}
+           \DataTypeTok{pourcentage_TC=}\StringTok{"TC%"}\NormalTok{,}
+           \DataTypeTok{Tir_90=}\StringTok{"Tir/90"}\NormalTok{,}
+           \DataTypeTok{TC_90=}\StringTok{"TC/90"}\NormalTok{,}
+           \DataTypeTok{B_Tir=}\StringTok{"B/Tir"}\NormalTok{,}
+           \DataTypeTok{Mn_Debute=}\StringTok{"Mn/Débuté"}\NormalTok{,}
+           \DataTypeTok{buts_marques_net_avec_joueur=}\StringTok{"+/-"}\NormalTok{,}
+           \DataTypeTok{buts_marques_net_avec_joueur_par_match=}\StringTok{"+/-90"}\NormalTok{,}
+           \DataTypeTok{Sur_En_dehors_du_terrain=}\StringTok{"Sur/En dehors du terrain"}\NormalTok{,}
+           \DataTypeTok{PassJeu_tirs=}\StringTok{"PassJeu...5"}\NormalTok{,}
+           \DataTypeTok{PassArr_tirs=}\StringTok{"PassArr...6"}\NormalTok{,}
+           \DataTypeTok{Drib_tirs=}\StringTok{"Drib...7"}\NormalTok{,}
+           \DataTypeTok{tirs_tirs=}\StringTok{"Tirs...8"}\NormalTok{,}
+           \DataTypeTok{Ftp_tirs=}\StringTok{"Ftp...9"}\NormalTok{,}
+           \DataTypeTok{Mn_Remp=}\StringTok{"Mn/Remp"}\NormalTok{,}
+           \DataTypeTok{pourcentage_min=}\StringTok{"Min%"}\NormalTok{,}
+           \DataTypeTok{def_tirs=}\StringTok{"Déf...10"}\NormalTok{,}
+           \DataTypeTok{passjeu_buts=}\StringTok{"PassJeu...13"}\NormalTok{,}
+           \DataTypeTok{passarr_buts=}\StringTok{"PassArr...14"}\NormalTok{,}
+           \DataTypeTok{Drib_buts=}\StringTok{"Drib...15"}\NormalTok{,}
+           \DataTypeTok{tirs_buts =}\StringTok{"Tirs...16"}\NormalTok{,}
+           \DataTypeTok{Ftp_buts=}\StringTok{"Ftp...17"}\NormalTok{,}
+           \DataTypeTok{Def_buts=}\StringTok{"Déf...18"}\NormalTok{,}
+           \DataTypeTok{B_TC=}\StringTok{"B/TC"}\NormalTok{,}
+           \DataTypeTok{PenM=}\StringTok{"PénM"}\NormalTok{,}
+           \DataTypeTok{PenT=}\StringTok{"PénT"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Pour obtenir le nom des variables en minuscule.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(df)=}\StringTok{ }\KeywordTok{str_to_lower}\NormalTok{(}\KeywordTok{colnames}\NormalTok{(df))}
+\KeywordTok{colnames}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "joueur"                                
+##  [2] "equipe"                                
+##  [3] "mj"                                    
+##  [4] "min"                                   
+##  [5] "mn_mj"                                 
+##  [6] "pourcentage_min"                       
+##  [7] "titulaire"                             
+##  [8] "mn_debute"                             
+##  [9] "compl"                                 
+## [10] "remp"                                  
+## [11] "mn_remp"                               
+## [12] "rempne"                                
+## [13] "ppm"                                   
+## [14] "bt"                                    
+## [15] "be"                                    
+## [16] "buts_marques_net_avec_joueur"          
+## [17] "buts_marques_net_avec_joueur_par_match"
+## [18] "sur_en_dehors_du_terrain"              
+## [19] "amt"                                   
+## [20] "amt90"                                 
+## [21] "passjeu_tirs"                          
+## [22] "passarr_tirs"                          
+## [23] "drib_tirs"                             
+## [24] "tirs_tirs"                             
+## [25] "ftp_tirs"                              
+## [26] "def_tirs"                              
+## [27] "amb"                                   
+## [28] "amb90"                                 
+## [29] "passjeu_buts"                          
+## [30] "passarr_buts"                          
+## [31] "drib_buts"                             
+## [32] "tirs_buts"                             
+## [33] "ftp_buts"                              
+## [34] "def_buts"                              
+## [35] "nation"                                
+## [36] "pos"                                   
+## [37] "age"                                   
+## [38] "naissance"                             
+## [39] "minutes_jouees_90"                     
+## [40] "buts"                                  
+## [41] "tirs"                                  
+## [42] "tc"                                    
+## [43] "pourcentage_tc"                        
+## [44] "tir_90"                                
+## [45] "tc_90"                                 
+## [46] "b_tir"                                 
+## [47] "b_tc"                                  
+## [48] "dist"                                  
+## [49] "cf"                                    
+## [50] "penm"                                  
+## [51] "pent"
+\end{verbatim}
+
+\hypertarget{classe-des-variables}{%
+\section{Classe des variables}\label{classe-des-variables}}
+
+\begin{itemize}
+\tightlist
+\item
+  Variables dans un format inadéquat. En particulier la variable `age'.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    716 obs. of  51 variables:
+##  $ joueur                                : chr  "Abdel Jalil Medioub" "Abdou Diallo" "Abdoulaye Bakayoko" "Abdoulaye Bamba" ...
+##  $ equipe                                : chr  "Bordeaux" "Paris S-G" "Saint-Étienne" "Angers" ...
+##  $ mj                                    : num  9 12 2 2 1 10 15 1 24 0 ...
+##  $ min                                   : num  537 877 180 4 67 ...
+##  $ mn_mj                                 : num  60 73 90 2 67 82 22 6 78 NA ...
+##  $ pourcentage_min                       : chr  "19.9" "32.5" "6.7" "0.1" ...
+##  $ titulaire                             : num  5 10 2 0 1 10 2 0 21 0 ...
+##  $ mn_debute                             : num  88 86 90 NA 67 82 79 NA 87 NA ...
+##  $ compl                                 : num  4 8 2 0 0 6 1 0 17 0 ...
+##  $ remp                                  : num  4 2 0 2 0 0 13 1 3 0 ...
+##  $ mn_remp                               : num  24 11 NA 2 NA NA 13 6 17 NA ...
+##  $ rempne                                : num  16 10 1 13 14 0 13 1 0 18 ...
+##  $ ppm                                   : chr  "1.33" "2.50" "0.00" "1.50" ...
+##  $ bt                                    : num  11 23 1 0 1 7 8 0 48 NA ...
+##  $ be                                    : num  15 9 3 0 2 12 5 0 19 NA ...
+##  $ buts_marques_net_avec_joueur          : num  -4 14 -2 0 -1 -5 3 0 29 NA ...
+##  $ buts_marques_net_avec_joueur_par_match: chr  "-0.67" "+1.44" "-1.00" "0.00" ...
+##  $ sur_en_dehors_du_terrain              : chr  "+0.49" "+0.35" "-0.21" "+0.33" ...
+##  $ amt                                   : num  0 5 1 1 0 9 8 0 38 NA ...
+##  $ amt90                                 : chr  "0.00" "0.51" "0.50" "22.50" ...
+##  $ passjeu_tirs                          : num  0 5 0 1 0 7 7 0 30 NA ...
+##  $ passarr_tirs                          : num  0 0 0 0 0 0 0 0 1 NA ...
+##  $ drib_tirs                             : num  0 0 0 0 0 0 1 0 6 NA ...
+##  $ tirs_tirs                             : num  0 0 0 0 0 0 0 0 1 NA ...
+##  $ ftp_tirs                              : num  0 0 1 0 0 1 0 0 0 NA ...
+##  $ def_tirs                              : num  0 0 0 0 0 1 0 0 0 NA ...
+##  $ amb                                   : num  0 1 0 0 0 2 1 0 7 NA ...
+##  $ amb90                                 : chr  "0.00" "0.10" "0.00" "0.00" ...
+##  $ passjeu_buts                          : num  0 1 0 0 0 2 1 0 6 NA ...
+##  $ passarr_buts                          : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ drib_buts                             : num  0 0 0 0 0 0 0 0 1 NA ...
+##  $ tirs_buts                             : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ ftp_buts                              : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ def_buts                              : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ nation                                : chr  "dz ALG" "sn SEN" "fr FRA" "ci CIV" ...
+##  $ pos                                   : chr  "DF" "DF" "DF" "ATDF" ...
+##  $ age                                   : chr  "24-223" "25-339" "19-114" "31-348" ...
+##  $ naissance                             : num  1997 1996 2002 1990 2000 ...
+##  $ minutes_jouees_90                     : chr  "6.0" "9.7" "2.0" "0.0" ...
+##  $ buts                                  : num  0 0 0 0 0 0 2 0 3 NA ...
+##  $ tirs                                  : num  3 2 0 0 0 3 7 0 17 NA ...
+##  $ tc                                    : num  0 1 0 0 0 1 3 0 7 NA ...
+##  $ pourcentage_tc                        : chr  "0.0" "50.0" NA NA ...
+##  $ tir_90                                : chr  "0.50" "0.21" "0.00" "0.00" ...
+##  $ tc_90                                 : chr  "0.00" "0.10" "0.00" "0.00" ...
+##  $ b_tir                                 : chr  "0.00" "0.00" NA NA ...
+##  $ b_tc                                  : chr  NA "0.00" NA NA ...
+##  $ dist                                  : chr  "22.1" "14.0" NA NA ...
+##  $ cf                                    : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ penm                                  : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ pent                                  : num  0 0 0 0 0 0 0 0 0 NA ...
+\end{verbatim}
+
+\hypertarget{modification-de-la-variable-age-dans-le-bon-format}{%
+\subsection{Modification de la variable age dans le bon format}\label{modification-de-la-variable-age-dans-le-bon-format}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age=}\KeywordTok{rename}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{joueur =}\NormalTok{ df}\OperatorTok{$}\NormalTok{joueur}
+\NormalTok{                      ,}\DataTypeTok{equipe=}\NormalTok{df}\OperatorTok{$}\NormalTok{equipe,}
+                      \KeywordTok{str_split_fixed}\NormalTok{(df}\OperatorTok{$}\NormalTok{age, }\StringTok{"-"}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{           ,}\DataTypeTok{age_annee=}\NormalTok{X1,}\DataTypeTok{age_jours=}\NormalTok{X2)}
+\NormalTok{age =}\StringTok{ }\KeywordTok{update_columns}\NormalTok{(age, }\KeywordTok{c}\NormalTok{(}\StringTok{"age_annee"}\NormalTok{,}\StringTok{"age_jours"}\NormalTok{),}
+\NormalTok{                     as.numeric)}
+\NormalTok{age =}\StringTok{ }\KeywordTok{mutate}\NormalTok{(age,}\DataTypeTok{age=}\NormalTok{age_annee}\OperatorTok{+}\NormalTok{(age_jours}\OperatorTok{/}\DecValTok{365}\NormalTok{))}
+\NormalTok{age=}\KeywordTok{select}\NormalTok{(age,joueur,equipe,age)}
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(age,}\DecValTok{3}\NormalTok{),}\DataTypeTok{format =} \StringTok{'latex'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l|r}
+\hline
+joueur & equipe & age\\
+\hline
+Abdel Jalil Medioub & Bordeaux & 24.61096\\
+\hline
+Abdou Diallo & Paris S-G & 25.92877\\
+\hline
+Abdoulaye Bakayoko & Saint-Étienne & 19.31233\\
+\hline
+\end{tabular}
+
+\begin{itemize}
+\tightlist
+\item
+  `df' sans l'ancienne variable `age' située à la place 37.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=df[,}\OperatorTok{-}\DecValTok{37}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  `df' avec la nouvelle variable `age' créée dans le bon format.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=}\KeywordTok{merge}\NormalTok{(df,age,}\DataTypeTok{by=}\KeywordTok{c}\NormalTok{(}\StringTok{'joueur'}\NormalTok{,}\StringTok{'equipe'}\NormalTok{),}\DataTypeTok{all.x =}\NormalTok{ T)}
+\KeywordTok{str}\NormalTok{(df}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:716] 24.6 25.9 19.3 32 22 ...
+\end{verbatim}
+
+\hypertarget{modification-de-la-classe-des-autres-variables}{%
+\subsection{Modification de la classe des autres variables}\label{modification-de-la-classe-des-autres-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df =}\StringTok{ }\KeywordTok{update_columns}\NormalTok{(df, }
+                    \KeywordTok{c}\NormalTok{(}\StringTok{"mj"}\NormalTok{,}\StringTok{"min"}\NormalTok{,}\StringTok{"mn_mj"}\NormalTok{,}
+                      \StringTok{"pourcentage_min"}\NormalTok{,}\StringTok{"titulaire"}\NormalTok{,}
+                      \StringTok{"tirs_tirs"}\NormalTok{, }\StringTok{"mn_debute"}\NormalTok{,}\StringTok{"compl"}\NormalTok{,}
+                      \StringTok{"remp"}\NormalTok{,}\StringTok{"mn_remp"}\NormalTok{,}\StringTok{"rempne"}\NormalTok{,}\StringTok{"ppm"}\NormalTok{,}
+                      \StringTok{"bt"}\NormalTok{,}\StringTok{"be"}\NormalTok{,}\StringTok{"buts_marques_net_avec_joueur"}\NormalTok{,}
+                      \StringTok{"buts_marques_net_avec_joueur_par_match"}\NormalTok{,}
+                      \StringTok{"sur_en_dehors_du_terrain"}\NormalTok{,}\StringTok{"amt90"}\NormalTok{,}
+                      \StringTok{"passjeu_tirs"}\NormalTok{,}\StringTok{"passarr_tirs"}\NormalTok{,}
+                      \StringTok{"drib_tirs"}\NormalTok{,}\StringTok{"tirs"}\NormalTok{,}\StringTok{"ftp_tirs"}\NormalTok{,}\StringTok{"def_tirs"}\NormalTok{,}
+                      \StringTok{"amb"}\NormalTok{,}\StringTok{"amb90"}\NormalTok{,}\StringTok{"passjeu_buts"}\NormalTok{,}\StringTok{"passarr_buts"}\NormalTok{,}
+                      \StringTok{"drib_buts"}\NormalTok{,}\StringTok{"tirs_buts"}\NormalTok{,}\StringTok{"ftp_buts"}\NormalTok{,}
+                      \StringTok{"def_buts"}\NormalTok{,}\StringTok{"minutes_jouees_90"}\NormalTok{,}
+                      \StringTok{"buts"}\NormalTok{,}\StringTok{"tc"}\NormalTok{,}\StringTok{"pourcentage_tc"}\NormalTok{,}
+                      \StringTok{"tir_90"}\NormalTok{,}\StringTok{"tc_90"}\NormalTok{,}\StringTok{"b_tir"}\NormalTok{,}\StringTok{"b_tc"}\NormalTok{,}
+                      \StringTok{"dist"}\NormalTok{,}\StringTok{"cf"}\NormalTok{,}\StringTok{"penm"}\NormalTok{,}\StringTok{"pent"}\NormalTok{,}\StringTok{"buts"}\NormalTok{)}
+\NormalTok{                    , as.numeric)}
+
+\NormalTok{df =}\StringTok{ }\KeywordTok{update_columns}\NormalTok{(df, }\KeywordTok{c}\NormalTok{(}\StringTok{"joueur"}\NormalTok{,}\StringTok{"equipe"}\NormalTok{,}\StringTok{"nation"}\NormalTok{,}\StringTok{"pos"}
+\NormalTok{                          ,}\StringTok{"naissance"}\NormalTok{)}
+\NormalTok{                    , as.factor)}
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    716 obs. of  51 variables:
+##  $ joueur                                : Factor w/ 699 levels "Abdel Jalil Medioub",..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ equipe                                : Factor w/ 20 levels "Angers","Bordeaux",..: 2 15 18 1 13 20 19 4 15 6 ...
+##  $ mj                                    : num  9 12 2 2 1 10 15 1 24 0 ...
+##  $ min                                   : num  537 877 180 4 67 ...
+##  $ mn_mj                                 : num  60 73 90 2 67 82 22 6 78 NA ...
+##  $ pourcentage_min                       : num  19.9 32.5 6.7 0.1 2.5 30.5 12.1 0.2 69.6 NA ...
+##  $ titulaire                             : num  5 10 2 0 1 10 2 0 21 0 ...
+##  $ mn_debute                             : num  88 86 90 NA 67 82 79 NA 87 NA ...
+##  $ compl                                 : num  4 8 2 0 0 6 1 0 17 0 ...
+##  $ remp                                  : num  4 2 0 2 0 0 13 1 3 0 ...
+##  $ mn_remp                               : num  24 11 NA 2 NA NA 13 6 17 NA ...
+##  $ rempne                                : num  16 10 1 13 14 0 13 1 0 18 ...
+##  $ ppm                                   : num  1.33 2.5 0 1.5 0 1.2 1.27 0 2.29 NA ...
+##  $ bt                                    : num  11 23 1 0 1 7 8 0 48 NA ...
+##  $ be                                    : num  15 9 3 0 2 12 5 0 19 NA ...
+##  $ buts_marques_net_avec_joueur          : num  -4 14 -2 0 -1 -5 3 0 29 NA ...
+##  $ buts_marques_net_avec_joueur_par_match: num  -0.67 1.44 -1 0 -1.34 -0.55 0.83 0 1.39 NA ...
+##  $ sur_en_dehors_du_terrain              : num  0.49 0.35 -0.21 0.33 -1.58 -0.12 0.22 0.8 0.62 NA ...
+##  $ amt                                   : num  0 5 1 1 0 9 8 0 38 NA ...
+##  $ amt90                                 : num  0 0.51 0.5 22.5 0 0.98 2.2 0 1.82 NA ...
+##  $ passjeu_tirs                          : num  0 5 0 1 0 7 7 0 30 NA ...
+##  $ passarr_tirs                          : num  0 0 0 0 0 0 0 0 1 NA ...
+##  $ drib_tirs                             : num  0 0 0 0 0 0 1 0 6 NA ...
+##  $ tirs_tirs                             : num  0 0 0 0 0 0 0 0 1 NA ...
+##  $ ftp_tirs                              : num  0 0 1 0 0 1 0 0 0 NA ...
+##  $ def_tirs                              : num  0 0 0 0 0 1 0 0 0 NA ...
+##  $ amb                                   : num  0 1 0 0 0 2 1 0 7 NA ...
+##  $ amb90                                 : num  0 0.1 0 0 0 0.22 0.28 0 0.34 NA ...
+##  $ passjeu_buts                          : num  0 1 0 0 0 2 1 0 6 NA ...
+##  $ passarr_buts                          : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ drib_buts                             : num  0 0 0 0 0 0 0 0 1 NA ...
+##  $ tirs_buts                             : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ ftp_buts                              : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ def_buts                              : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ nation                                : Factor w/ 67 levels "ar ARG","at AUT",..: 21 56 25 13 30 50 29 25 39 NA ...
+##  $ pos                                   : Factor w/ 10 levels "AT","ATDF","ATMT",..: 4 4 4 2 4 4 9 1 4 NA ...
+##  $ naissance                             : Factor w/ 23 levels "1983","1984",..: 15 14 20 8 18 16 9 14 16 NA ...
+##  $ minutes_jouees_90                     : num  6 9.7 2 0 0.7 9.1 3.6 0.1 20.9 NA ...
+##  $ buts                                  : num  0 0 0 0 0 0 2 0 3 NA ...
+##  $ tirs                                  : num  3 2 0 0 0 3 7 0 17 NA ...
+##  $ tc                                    : num  0 1 0 0 0 1 3 0 7 NA ...
+##  $ pourcentage_tc                        : num  0 50 NA NA NA 33.3 42.9 NA 41.2 NA ...
+##  $ tir_90                                : num  0.5 0.21 0 0 0 0.33 1.93 0 0.81 NA ...
+##  $ tc_90                                 : num  0 0.1 0 0 0 0.11 0.83 0 0.34 NA ...
+##  $ b_tir                                 : num  0 0 NA NA NA 0 0.29 NA 0.18 NA ...
+##  $ b_tc                                  : num  NA 0 NA NA NA 0 0.67 NA 0.43 NA ...
+##  $ dist                                  : num  22.1 14 NA NA NA 17.9 16.7 NA 16.3 NA ...
+##  $ cf                                    : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ penm                                  : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ pent                                  : num  0 0 0 0 0 0 0 0 0 NA ...
+##  $ age                                   : num  24.6 25.9 19.3 32 22 ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+
+\hypertarget{relocalisation-des-variables}{%
+\section{Relocalisation des variables}\label{relocalisation-des-variables}}
+
+\begin{itemize}
+\item
+  La variable `joueur' est 1ère position pour identifier les joueurs.
+\item
+  les variables qualitatives signalitiques seront placées avant les variables continues.
+\item
+  La variable `buts' sera en 2ème position car elle sera considérée plus tard comme variable endogène dans un modèle de maching learnig avec application économétrique.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=}\StringTok{ }\KeywordTok{relocate}\NormalTok{(df,}\KeywordTok{c}\NormalTok{(}\StringTok{"nation"}\NormalTok{,}\StringTok{"pos"}\NormalTok{,}\StringTok{"naissance"}\NormalTok{),}\DataTypeTok{.before =}\NormalTok{ mj)}
+\NormalTok{df=}\StringTok{ }\KeywordTok{relocate}\NormalTok{(df,buts,}\DataTypeTok{.before =}\NormalTok{ equipe)}
+\KeywordTok{colnames}\NormalTok{(df[,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "joueur"    "buts"      "equipe"    "nation"    "pos"       "naissance"
+## [7] "mj"        "min"
+\end{verbatim}
+
+\hypertarget{analyse-exploratoire-de-la-bdd}{%
+\chapter{Analyse exploratoire de la bdd}\label{analyse-exploratoire-de-la-bdd}}
+
+\begin{itemize}
+\item
+  Pour rappel, l'exploration de données dans un projet de données précède les statistiques descriptives et/ou les inférences statistiques. Cette étape est essentielle à la compréhension de la base de données en nous fournissant un premier aperçu de celle-ci.
+\item
+  La variable \textbf{\emph{`buts'}} ayant une grande importance dans l'analyse des performances offensives, nous ne retenons que les joueurs ayant marqué au moins 1 but dans la saison.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=}\KeywordTok{filter}\NormalTok{(df,buts}\OperatorTok{>}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Nous obtenons un total de 250 joueurs et buteurs.
+
+\hypertarget{structure-des-donnuxe9es}{%
+\section{Structure des données}\label{structure-des-donnuxe9es}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_intro}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\hypertarget{donnuxe9es-manquantes}{%
+\section{Données manquantes}\label{donnuxe9es-manquantes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{profile_missing}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                   feature num_missing pct_missing
+## 1                                  joueur           0       0.000
+## 2                                    buts           0       0.000
+## 3                                  equipe           0       0.000
+## 4                                  nation           0       0.000
+## 5                                     pos           0       0.000
+## 6                               naissance           0       0.000
+## 7                                      mj           0       0.000
+## 8                                     min           0       0.000
+## 9                                   mn_mj           0       0.000
+## 10                        pourcentage_min           0       0.000
+## 11                              titulaire           0       0.000
+## 12                              mn_debute           3       0.012
+## 13                                  compl           0       0.000
+## 14                                   remp           0       0.000
+## 15                                mn_remp          41       0.164
+## 16                                 rempne           0       0.000
+## 17                                    ppm           0       0.000
+## 18                                     bt           0       0.000
+## 19                                     be           0       0.000
+## 20           buts_marques_net_avec_joueur           0       0.000
+## 21 buts_marques_net_avec_joueur_par_match           0       0.000
+## 22               sur_en_dehors_du_terrain           0       0.000
+## 23                                    amt           0       0.000
+## 24                                  amt90           0       0.000
+## 25                           passjeu_tirs           0       0.000
+## 26                           passarr_tirs           0       0.000
+## 27                              drib_tirs           0       0.000
+## 28                              tirs_tirs           0       0.000
+## 29                               ftp_tirs           0       0.000
+## 30                               def_tirs           0       0.000
+## 31                                    amb           0       0.000
+## 32                                  amb90           0       0.000
+## 33                           passjeu_buts           0       0.000
+## 34                           passarr_buts           0       0.000
+## 35                              drib_buts           0       0.000
+## 36                              tirs_buts           0       0.000
+## 37                               ftp_buts           0       0.000
+## 38                               def_buts           0       0.000
+## 39                      minutes_jouees_90           0       0.000
+## 40                                   tirs           0       0.000
+## 41                                     tc           0       0.000
+## 42                         pourcentage_tc           0       0.000
+## 43                                 tir_90           0       0.000
+## 44                                  tc_90           0       0.000
+## 45                                  b_tir           0       0.000
+## 46                                   b_tc           0       0.000
+## 47                                   dist           0       0.000
+## 48                                     cf           0       0.000
+## 49                                   penm           0       0.000
+## 50                                   pent           0       0.000
+## 51                                    age           0       0.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_NA <-}\StringTok{ }\KeywordTok{aggr}\NormalTok{(df,}
+              \DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{'navyblue'}\NormalTok{,}\StringTok{'red'}\NormalTok{),}
+              \DataTypeTok{numbers=}\OtherTok{TRUE}\NormalTok{,}
+              \DataTypeTok{sortVars=}\OtherTok{TRUE}\NormalTok{,}
+              \DataTypeTok{labels=}\KeywordTok{names}\NormalTok{(data),}
+              \DataTypeTok{cex.axis=}\NormalTok{.}\DecValTok{7}\NormalTok{, }\DataTypeTok{gap=}\DecValTok{3}\NormalTok{,}
+              \DataTypeTok{ylab=}\KeywordTok{c}\NormalTok{(}\StringTok{"Histogramme des valeurs manquantes"}\NormalTok{,}\StringTok{"Pattern"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{verbatim}
+## 
+##  Variables sorted by number of missings: 
+##                                Variable Count
+##                                 mn_remp 0.164
+##                               mn_debute 0.012
+##                                  joueur 0.000
+##                                    buts 0.000
+##                                  equipe 0.000
+##                                  nation 0.000
+##                                     pos 0.000
+##                               naissance 0.000
+##                                      mj 0.000
+##                                     min 0.000
+##                                   mn_mj 0.000
+##                         pourcentage_min 0.000
+##                               titulaire 0.000
+##                                   compl 0.000
+##                                    remp 0.000
+##                                  rempne 0.000
+##                                     ppm 0.000
+##                                      bt 0.000
+##                                      be 0.000
+##            buts_marques_net_avec_joueur 0.000
+##  buts_marques_net_avec_joueur_par_match 0.000
+##                sur_en_dehors_du_terrain 0.000
+##                                     amt 0.000
+##                                   amt90 0.000
+##                            passjeu_tirs 0.000
+##                            passarr_tirs 0.000
+##                               drib_tirs 0.000
+##                               tirs_tirs 0.000
+##                                ftp_tirs 0.000
+##                                def_tirs 0.000
+##                                     amb 0.000
+##                                   amb90 0.000
+##                            passjeu_buts 0.000
+##                            passarr_buts 0.000
+##                               drib_buts 0.000
+##                               tirs_buts 0.000
+##                                ftp_buts 0.000
+##                                def_buts 0.000
+##                       minutes_jouees_90 0.000
+##                                    tirs 0.000
+##                                      tc 0.000
+##                          pourcentage_tc 0.000
+##                                  tir_90 0.000
+##                                   tc_90 0.000
+##                                   b_tir 0.000
+##                                    b_tc 0.000
+##                                    dist 0.000
+##                                      cf 0.000
+##                                    penm 0.000
+##                                    pent 0.000
+##                                     age 0.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_NA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Missings in variables:
+##   Variable Count
+##  mn_debute     3
+##    mn_remp    41
+\end{verbatim}
+
+\hypertarget{distribution-des-variables}{%
+\section{distribution des variables}\label{distribution-des-variables}}
+
+\hypertarget{variables-qualitatives}{%
+\subsection{Variables qualitatives}\label{variables-qualitatives}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_bar}\NormalTok{(}
+  \KeywordTok{select}\NormalTok{(df,naissance,pos,equipe),}
+  \DataTypeTok{title =} \StringTok{"Répartition des joueurs par caractéristiques"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\hypertarget{variables-continues}{%
+\subsection{Variables continues}\label{variables-continues}}
+
+\hypertarget{normalituxe9}{%
+\subsubsection{Normalité}\label{normalituxe9}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{Histogramme}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_histogram}\NormalTok{(}\KeywordTok{split_columns}\NormalTok{(df)}\OperatorTok{$}\NormalTok{continuous)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-21-1.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-21-2.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-21-3.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{Densité}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_density}\NormalTok{(}\KeywordTok{split_columns}\NormalTok{(df)}\OperatorTok{$}\NormalTok{continuous)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-22-1.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-22-2.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-22-3.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{qq-plot}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_qq}\NormalTok{(}\KeywordTok{split_columns}\NormalTok{(df)}\OperatorTok{$}\NormalTok{continuous)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-23-1.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-23-2.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-23-3.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-23-4.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-23-5.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-23-6.pdf}
+
+\hypertarget{evolution-du-nombre-de-buts-en-fonction-des-autres-variables-continues}{%
+\subsubsection{Evolution du nombre de buts en fonction des autres variables continues}\label{evolution-du-nombre-de-buts-en-fonction-des-autres-variables-continues}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_scatterplot}\NormalTok{(}\KeywordTok{split_columns}\NormalTok{(df)}\OperatorTok{$}\NormalTok{continuous, }\DataTypeTok{by =} \StringTok{"buts"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-24-1.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-24-2.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-24-3.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-24-4.pdf} \includegraphics{nettoyage_bdd_performances_offensives_L1_files/figure-latex/unnamed-chunk-24-5.pdf}
+
+Les variables `\emph{def\_tirs', 'ftp\_tirs', 'passjeu\_buts', 'tirs\_tirs', 'def\_buts,drib\_buts', 'ftp\_buts','passarr\_buts', 'tirs\_buts', 'penm'} et \emph{'pent}' seront discrétisés.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_a_discritise =}\StringTok{ }\KeywordTok{select}\NormalTok{(df,}
+\NormalTok{                         def_tirs,ftp_tirs,passjeu_buts,}
+\NormalTok{                         tirs_tirs,def_buts,drib_buts,}
+\NormalTok{                         ftp_buts,passarr_buts,tirs_buts,}
+\NormalTok{                         penm,pent)}
+
+\NormalTok{df_a_discritise =}\StringTok{ }\KeywordTok{update_columns}\NormalTok{(}
+\NormalTok{  df_a_discritise,}
+  \KeywordTok{c}\NormalTok{(}\StringTok{"def_tirs"}\NormalTok{,}\StringTok{"ftp_tirs"}\NormalTok{,}\StringTok{"passjeu_buts"}\NormalTok{,}\StringTok{"tirs_tirs"}\NormalTok{,}
+    \StringTok{"def_buts"}\NormalTok{,}\StringTok{"drib_buts"}\NormalTok{,}\StringTok{"ftp_buts"}\NormalTok{,}\StringTok{"passarr_buts"}\NormalTok{,}
+    \StringTok{"tirs_buts"}\NormalTok{,}\StringTok{"penm"}\NormalTok{,}\StringTok{"pent"}\NormalTok{)}
+\NormalTok{                    , as.factor)}
+\KeywordTok{colnames}\NormalTok{(df_a_discritise) <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"discr"}\NormalTok{,}
+                                   \KeywordTok{colnames}\NormalTok{(df_a_discritise),}
+                                   \DataTypeTok{sep=}\StringTok{"_"}\NormalTok{)}
+
+\KeywordTok{summary}\NormalTok{(df_a_discritise)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  discr_def_tirs discr_ftp_tirs discr_passjeu_buts discr_tirs_tirs
+##  0:114          0      :98     0      :60         0      :75     
+##  1: 83          1      :49     1      :54         1      :69     
+##  2: 33          2      :45     2      :42         3      :32     
+##  3: 10          3      :13     4      :25         2      :31     
+##  4:  7          4      :13     3      :24         4      :15     
+##  5:  1          5      :11     6      :13         5      :10     
+##  6:  2          (Other):21     (Other):32         (Other):18     
+##  discr_def_buts discr_drib_buts discr_ftp_buts discr_passarr_buts
+##  0:232          0:201           0:185          0:216             
+##  1: 18          1: 42           1: 54          1: 18             
+##                 2:  4           2:  8          2:  6             
+##                 3:  2           3:  3          3:  6             
+##                 5:  1                          4:  3             
+##                                                5:  1             
+##                                                                  
+##  discr_tirs_buts discr_penm discr_pent
+##  0:178           0:210      0:208     
+##  1: 53           1: 22      1: 21     
+##  2: 17           2:  8      2:  8     
+##  3:  2           3:  4      3:  6     
+##                  4:  1      4:  1     
+##                  5:  4      5:  5     
+##                  7:  1      7:  1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1=}\KeywordTok{data.frame}\NormalTok{(df,df_a_discritise)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Nous obtenons ainsi une nouvelle base de donnée finale `df1' de dimension (250, 62) avec les variables discrétisées en plus (contre `df' de dimention (250, 51)). Cette base \emph{`nettoyée'} servira ainsi à réaliser une analyse statistique par la suite.
+\item
+  En outre, le raffinement de cette purification de la donnée est susceptible d'être complété au cours de la suite de l'analyse en fonction de l'évolution de la compréhension de l'étude tant d'un point de vue qualitatif que quantitatif.
+\end{itemize}
+
+\end{document}
